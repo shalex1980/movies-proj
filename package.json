@@ -1,0 +1,48 @@
+{
+  "name": "movies-proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.1.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
+  },
+  "devDependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.17",
+    "@emotion/core": "^10.0.21",
+    "babel-plugin-emotion": "^10.0.21",
+    "babel-plugin-import": "^1.12.2",
+    "emotion": "^10.0.17",
+    "redux-logger": "^3.0.6"
+  },
+  "babel": {
+    "presets": [
+      "@emotion/babel-preset-css-prop"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": "css"
+        }
+      ],
+      "@babel/plugin-proposal-class-properties",
+      [
+        "styled-jsx/babel"
+      ]
+    ]
+  }
+}
