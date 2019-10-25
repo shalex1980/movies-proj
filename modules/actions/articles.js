@@ -6,3 +6,4 @@ export function initialArticle() {
     callAPI: 'http://api.tvmaze.com/shows'
   }
 }
+
