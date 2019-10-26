@@ -1,24 +1,26 @@
 import { SEARCH, START, SUCCESS, ERROR } from '../utils/constants';
 
 const initialState = {
-  search: {
-    loading: false,
-    loaded: false,
-    response: []
-  }
-}
+  loading: false,
+  loaded: false,
+  result: [],
+  flag: false,
+};
 
-export const searchReducer = ( state = initialState, action) => {
+export default ( state = initialState, action) => {
 
   switch( action.type ) {
     
     case SEARCH + START:
       console.log(action.type)
-      return {...state, search: { ...state.search, loading: true }};
+      return { ...state, loading: true};
 
     case SEARCH + SUCCESS:
       console.log(action.type)
-      return {...state, search: { ...search.searh, loading: false, loaded: true, response: action.response }};
+      return { ...state, loading: false, loaded: true, result: action.response.map(item => item.show), flag: true };
+    
+    case SEARCH + ERROR:
+    return { ...state, loading: false, loaded: false, error: action.error}
 
     default: 
       return state;

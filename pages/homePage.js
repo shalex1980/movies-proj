@@ -11,7 +11,7 @@ import fetch from 'isomorphic-unfetch';
 class HomePage extends React.Component{
   
   componentDidMount() {
-    this.props.initialArticle();
+
   }
 
   handleClick = () => {
@@ -53,16 +53,10 @@ const wrap = {
 
 
 export default connect(store => {
-  /*return {
-    loading: store.loading,
-    loaded: store.loaded,
-    result: store.result
-  }*/
-  //let obj =  store.article(initialArticle());
- // console.log(store);
+    const flag = store.search.flag;
   return  { 
-    loading: store.article.loading,
-    loaded: store.article.loaded,
-    result: store.article.result
+    loading: flag ? store.search.loading : store.article.loading,
+    loaded: flag ?  store.search.loaded : store.article.loaded,
+    result: flag ? store.search.result : store.article.result,
   }
 },{initialArticle})(HomePage);

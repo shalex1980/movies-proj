@@ -1,12 +1,12 @@
 import { GET_INITIAL, SUCCESS, ERROR, START } from '../utils/constants';
 
-export const initialState = {
+const initialState = {
   loading: false,
   loaded: false,
   result: []
 };
 
-export const articleReducer = ( state = initialState, action) => {
+export default ( state = initialState, action) => {
 
   switch(action.type) {
 
