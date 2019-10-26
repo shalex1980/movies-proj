@@ -6,27 +6,33 @@ import Container from '../components/Layout/Container';
 import Header from '../components/Layout/Header';
 import Content from '../components/Layout/Content';
 import PreArticle from '../components/Layout/PreArticle';
-import fetch from 'isomorphic-unfetch';
+import Pagination from '../components/Layout/Pagination';
 
 class HomePage extends React.Component{
-  
-  componentDidMount() {
-
+  state = {
+    count: 0,
+    countOnPage: 4
   }
 
   handleClick = () => {
     this.props.initialArticle();
   }
 
+  handlePagin = (count) => {
+    this.setState({count : this.state.countOnPage * count});
+  }
+
   render() {
     const { result, loading, loaded }= this.props;
+
     let tmp;
       if(loading) {
         tmp = <h2>Loading ...</h2>
       }
       else if(loaded) {
-        tmp = result.map( show => <PreArticle {...show} key={show.id} />)
+        tmp = result.slice(this.state.count, this.state.count + this.state.countOnPage).map( show => <PreArticle {...show} key={show.id} />)
       }
+    
     return (
       <Container title="HomePage">
         <Header />
@@ -37,7 +43,12 @@ class HomePage extends React.Component{
           <div style={wrap}>
               { tmp }
           </div>
-
+          { 
+            result && result.length > 0 ?
+            <Pagination size={result.length} handleClick={this.handlePagin}/> : 
+            null
+          }
+          
         </Content>
       </Container>
     )
